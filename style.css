@@ -392,13 +392,14 @@ header nav ul li a:hover {
         padding: 15px 20px;
     }
 
-    #hamburger-icon {
-        display: block;
-        font-size: 2em;
-        cursor: pointer;
-        color: var(--brown);
-    }
-
+   #hamburger-icon {
+    display: block;
+    font-size: 2em;
+    cursor: pointer;
+    color: var(--brown);
+    position: relative; /* Add this */
+    z-index: 1001;      /* And this, to bring it to the front */
+}
     header nav {
         position: absolute;
         top: 71px; /* Height of the header */
