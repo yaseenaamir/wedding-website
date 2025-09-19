@@ -405,9 +405,9 @@ header nav ul {
 @media (max-width: 768px) {
     
     /* Hide the desktop link list on mobile */
-    header nav ul {
+    /* header nav ul {
         display: none;
-    }
+    } */
     
     /* Show the hamburger icon on mobile */
     #hamburger-icon {
@@ -435,11 +435,11 @@ header nav ul {
     
     /* Style the links for the new slide-in menu */
     header nav.nav-active ul {
-        display: flex;
-        flex-direction: column;
-        padding-top: 80px;
-        gap: 0;
-    }
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px;
+    gap: 0;
+}
 
     header nav.nav-active ul li a {
         display: block;
