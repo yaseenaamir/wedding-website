@@ -324,14 +324,14 @@ if (contactIcon && contactFormContainer) {
         });
     }
 }
-// --- SCRIPT FOR MOBILE HAMBURGER MENU ---
+// --- SCRIPT FOR MOBILE HAMBURGER MENU (CORRECTED) ---
 document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.getElementById('hamburger-icon');
-    const navLinks = document.querySelector('header nav');
+    const navUl = document.getElementById('nav-links'); // Corrected to target the ul by its ID
 
-    if (hamburger && navLinks) {
+    if (hamburger && navUl) {
         hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('nav-active');
+            navUl.parentElement.classList.toggle('nav-active'); // Toggle the class on the <nav> parent
         });
     }
 });
