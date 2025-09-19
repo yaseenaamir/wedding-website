@@ -532,3 +532,8 @@ header nav ul {
         display: none; /* Remove horizontal lines */
     }
 }
+
+/* --- HIDE RSVP 'ATTENDING' BLOCK --- */
+.form-group.event-selection {
+    display: none;
+}
