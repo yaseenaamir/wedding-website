@@ -324,4 +324,15 @@ if (contactIcon && contactFormContainer) {
         });
     }
 }
+// --- SCRIPT FOR MOBILE HAMBURGER MENU ---
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger-icon');
+    const navLinks = document.querySelector('header nav');
+
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+        });
+    }
+});
 });

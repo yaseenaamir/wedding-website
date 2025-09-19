@@ -379,3 +379,93 @@ header nav ul li a:hover {
     color: var(--brown);
     text-decoration: none;
 }
+
+/* ==========================================================================
+   # RESPONSIVE STYLES (FOR MOBILE & TABLETS)
+   ========================================================================== */
+
+/* This code will apply only on screens 768px wide or smaller */
+@media (max-width: 768px) {
+
+    /* --- Header & Navigation --- */
+    header {
+        padding: 15px 20px;
+    }
+
+    #hamburger-icon {
+        display: block;
+        font-size: 2em;
+        cursor: pointer;
+        color: var(--brown);
+    }
+
+    header nav {
+        position: absolute;
+        top: 71px; /* Height of the header */
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        max-height: 0; /* Hidden by default */
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+    }
+
+    header nav ul {
+        flex-direction: column; /* Stack links vertically */
+        padding: 20px;
+        gap: 0;
+    }
+
+    header nav ul li a {
+        display: block;
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    header nav ul li:last-child a {
+        border-bottom: none;
+    }
+
+    /* This class will be added by JavaScript to show the menu */
+    nav.nav-active {
+        max-height: 500px; /* Animate the menu open */
+    }
+
+    /* --- General Layout & Font Sizes --- */
+    section {
+        padding: 40px 15px;
+    }
+
+    h2, #location > h2, #family-tree > h2 {
+        font-size: 2.5em !important;
+    }
+
+    /* --- Home Page --- */
+    #home .names h1 {
+        font-size: 3em; /* Reduce font size of names */
+    }
+
+    .wedding-dates, .tree-container {
+        flex-direction: column; /* Stack dates and family trees vertically */
+        gap: 30px;
+    }
+    .date-separator { display: none; }
+
+    /* --- Location Page --- */
+    .additional-info-container {
+        margin-top: 40px;
+    }
+
+    /* --- Family Tree --- */
+    .family-side {
+        min-width: 100%;
+    }
+    .generation {
+        flex-direction: column;
+    }
+    .member:not(:last-child)::after {
+        display: none; /* Remove horizontal lines */
+    }
+}
