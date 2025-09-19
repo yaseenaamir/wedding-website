@@ -381,65 +381,70 @@ header nav ul li a:hover {
 }
 
 /* ==========================================================================
-   # RESPONSIVE STYLES (FOR MOBILE & TABLETS)
+   # HEADER & NAVIGATION (FINAL - WITH MOBILE MENU)
    ========================================================================== */
 
-/* This code will apply only on screens 768px wide or smaller */
+/* --- Desktop Navigation --- */
+header nav ul {
+    display: flex; /* This is the default for desktop */
+    list-style: none;
+    gap: 30px;
+}
+
+/* Hide hamburger on desktop */
+#hamburger-icon {
+    display: none;
+    font-size: 2em;
+    cursor: pointer;
+    color: var(--brown);
+    z-index: 1002; /* Highest z-index */
+}
+
+
+/* --- Responsive Styles for Mobile & Tablets --- */
 @media (max-width: 768px) {
-
-    /* --- Header & Navigation --- */
-    header {
-        padding: 15px 20px;
-    }
-
-    /* By default on mobile, hide the desktop navigation links */
+    
+    /* Hide the desktop link list on mobile */
     header nav ul {
         display: none;
     }
-
-    /* And show ONLY the hamburger icon */
+    
+    /* Show the hamburger icon on mobile */
     #hamburger-icon {
         display: block;
-        font-size: 2em;
-        cursor: pointer;
-        color: var(--brown);
-        z-index: 1001; /* Ensures it's on top */
     }
 
-    /* This is the container for the slide-down menu */
+    /* Style the navigation container that slides in */
     header nav {
-        position: absolute;
-        top: 71px; /* Height of the header */
-        left: 0;
-        width: 100%;
-        background-color: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease-out;
+        display: block; /* Ensure the container is visible to slide */
+        position: fixed;
+        top: 0;
+        right: -300px; /* Start off-screen to the right */
+        width: 280px;
+        height: 100vh;
+        background-color: #ffffff;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        transition: transform 0.4s ease-in-out;
+        z-index: 1001;
+    }
+
+    /* When active, slide the navigation into view */
+    header nav.nav-active {
+        transform: translateX(-300px);
     }
     
-    /* This class is added by JS to open the menu */
-    nav.nav-active {
-        max-height: 500px;
-    }
-
-    /* When the menu is open, show the list and stack it vertically */
-    nav.nav-active ul {
+    /* Style the links for the new slide-in menu */
+    header nav.nav-active ul {
         display: flex;
         flex-direction: column;
-        padding: 20px;
+        padding-top: 80px;
         gap: 0;
     }
 
-    nav.nav-active ul li a {
+    header nav.nav-active ul li a {
         display: block;
-        padding: 15px;
-        text-align: center;
+        padding: 20px 30px;
+        text-align: left;
         border-bottom: 1px solid var(--border-color);
-    }
-    
-    nav.nav-active ul li:last-child a {
-        border-bottom: none;
     }
 }
