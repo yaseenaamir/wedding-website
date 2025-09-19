@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSVP | Anam & Yaseen's Wedding</title> 
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">A&A</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="invitation.html">Invitation</a></li>
+                <li><a href="location.html">Location</a></li>
+                <li><a href="rsvp.html">RSVP</a></li>
+                <li><a href="photos.html">Photos</a></li>
+                <li><a href="family-tree.html">Family Tree</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="rsvp">
+        <div class="container">
+            <div class="rsvp-container">
+                <h2>Kindly Respond</h2>
+                <p class="rsvp-subtext">We look forward to celebrating with you.</p>
+                <form id="rsvp-form">
+                    <div class="form-group">
+                        <label for="Name">Full Name*</label>
+                        <input type="text" id="Name" name="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Phone">Phone Number</label>
+                        <input type="tel" id="Phone" name="Phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="email" id="Email" name="Email">
+                    </div>
+                    <div class="form-group event-selection">
+                        <label>Attending*</label>
+                        <div class="radio-group">
+                            <input type="radio" id="nikah" name="Attending" value="Nikah" required>
+                            <label for="nikah">Nikah</label>
+                            <input type="radio" id="valima" name="Attending" value="Valima">
+                            <label for="valima">Valima</label>
+                            <input type="radio" id="both" name="Attending" value="Both">
+                            <label for="both">Both</label>
+                        </div>
+                    </div>
+                    <button type="submit" id="submit-button">Submit RSVP</button>
+                </form>
+                <div id="form-message"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

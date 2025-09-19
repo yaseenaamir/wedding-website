@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery | Anam & Yaseen's Wedding</title> 
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">A&A</a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="invitation.html">Invitation</a></li>
+                <li><a href="location.html">Location</a></li>
+                <li><a href="rsvp.html">RSVP</a></li>
+                <li><a href="photos.html">Photos</a></li>
+                <li><a href="family-tree.html">Family Tree</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="photos">
+        <div class="container">
+            <div class="photos-container">
+                <h2>Share Your Memories</h2>
+                <p>We'd love to see the day through your eyes! Please upload your favorite photos from the celebration.</p>
+                
+                <div class="upload-area">
+                    <input type="file" id="photo-input" accept="image/*" style="display: none;">
+                    <button id="upload-button">Click to Select a Photo</button>
+                    <div id="upload-status"></div>
+                </div>
+
+                <div class="gallery-divider"></div>
+
+                <h2>Guest Photo Gallery</h2>
+                <div id="photo-gallery" class="gallery-grid">
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

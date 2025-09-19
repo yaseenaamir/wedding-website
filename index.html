@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anam & Yaseen's Wedding</title> 
+    
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+    <a href="index.html" class="logo">A&A</a>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="invitation.html">Invitation</a></li>
+            <li><a href="location.html">Location</a></li>
+            <li><a href="rsvp.html">RSVP</a></li>
+            <li><a href="photos.html">Photos</a></li>
+            <li><a href="family-tree.html">Family Tree</a></li>
+        </ul>
+    </nav>
+</header>
+
+    <section id="home">
+        <div class="quran-quote">
+            <img src="images/quran-verse.png" alt="Arabic calligraphy of Quranic verse">
+            <p>"And We created you in pairs."</p>
+            <p class="verse-reference">Quran: 78:8</p>
+        </div>
+        <div class="names">
+            <h1>Yaseen Aamir Baig Mirza</h1>
+            <h2>&</h2>
+            <h1>Anam Armaan Raza</h1>
+          
+        </div>
+
+        <div id="countdown" class="countdown-container">
+            <div class="time-block">
+                <span id="days">0</span>
+                <p>Days</p>
+            </div>
+            <div class="time-block">
+                <span id="hours">0</span>
+                <p>Hours</p>
+            </div>
+            <div class="time-block">
+                <span id="minutes">0</span>
+                <p>Minutes</p>
+            </div>
+            <div class="time-block">
+                <span id="seconds">0</span>
+                <p>Seconds</p>
+            </div>
+        </div>
+
+        <div class="wedding-dates">
+            <div class="date-event">
+                <p class="event-title">Nikah</p>
+                <p class="gregorian-date">Sunday, 21st Dec 2025</p>
+                <p class="hijri-date">30 Jumada al-Thani, 1447</p>
+                <div class="calendar-container">
+                    <button class="save-calendar-button" data-event="nikah">
+                        Save the Date
+                    </button>
+                    <div class="dropdown-content" data-dropdown="nikah">
+                        <a href="#" target="_blank" data-service="google">Google Calendar</a>
+                        <a href="#" target="_blank" data-service="outlook">Outlook Calendar</a>
+                        <a href="#" download="nikah.ics" data-service="ics">Apple Calendar / .ICS</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="date-separator"></div>
+
+            <div class="date-event">
+                <p class="event-title">Valima</p>
+                <p class="gregorian-date">Thursday, 25th Dec 2025</p>
+                <p class="hijri-date">4 Rajab, 1447</p>
+                <div class="calendar-container">
+                    <button class="save-calendar-button" data-event="valima">
+                        Save the Date
+                    </button>
+                    <div class="dropdown-content" data-dropdown="valima">
+                        <a href="#" target="_blank" data-service="google">Google Calendar</a>
+                        <a href="#" target="_blank" data-service="outlook">Outlook Calendar</a>
+                        <a href="#" download="valima.ics" data-service="ics">Apple Calendar / .ICS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
+    <div id="contact-bubble">
+    <div id="contact-icon">?</div>
+    <div id="contact-form-container">
+        <h4>Get in Touch</h4>
+        <form id="contact-form" action="https://formspree.io/f/xovngdyn" method="POST">
+            <div class="form-group">
+                <label for="contact-name">Name</label>
+                <input type="text" id="contact-name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="contact-number">Number</label>
+                <input type="tel" id="contact-number" name="number">
+            </div>
+            <div class="form-group">
+                <label for="contact-query">Query</label>
+                <textarea id="contact-query" name="query" rows="3" required></textarea>
+            </div>
+            <button type="submit">Send</button>
+        </form>
+        <div id="contact-form-status"></div>
+        <a href="tel:+9894077696" class="call-us-button">
+            Call Us (+91 9894077696)
+        </a>
+    </div>
+</div>
+  <script src="script.js"></script>
+</body>
+</html>
