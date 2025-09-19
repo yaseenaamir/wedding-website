@@ -401,50 +401,134 @@ header nav ul {
 }
 
 
-/* --- Responsive Styles for Mobile & Tablets --- */
+/* ==========================================================================
+   # RESPONSIVE STYLES (FINAL - ALL DEVICES)
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------- */
+/* # For Very Large Screens (like zoomed-out desktops)
+/* -------------------------------------------------------------------------- */
+@media (min-width: 1400px) {
+    /* Widen the content area slightly on large screens */
+    .container {
+        max-width: 1300px;
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* # For Tablets & Small Desktops
+/* -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+    .tree-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .family-side {
+        max-width: 100%;
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* # For Mobile Phones & Small Tablets
+/* -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
-    
-    /* Hide the desktop link list on mobile */
-    /* header nav ul {
-        display: none;
-    } */
-    
-    /* Show the hamburger icon on mobile */
-    #hamburger-icon {
-        display: block;
+
+    /* --- Header & Navigation --- */
+    header {
+        padding: 15px 20px;
     }
 
-    /* Style the navigation container that slides in */
-    header nav {
-        display: block; /* Ensure the container is visible to slide */
-        position: fixed;
-        top: 0;
-        right: -300px; /* Start off-screen to the right */
-        width: 280px;
-        height: 100vh;
-        background-color: #ffffff;
-        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-        transition: transform 0.4s ease-in-out;
+    #hamburger-icon {
+        display: block;
+        font-size: 2em;
+        cursor: pointer;
+        color: var(--brown);
+        position: relative;
         z-index: 1001;
     }
 
-    /* When active, slide the navigation into view */
-    header nav.nav-active {
-        transform: translateX(-300px);
+    header nav {
+        position: absolute;
+        top: 71px; /* Height of the header */
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-out;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        padding: 20px;
+        gap: 0;
+    }
+
+    header nav ul li a {
+        display: block;
+        padding: 15px;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
     }
     
-    /* Style the links for the new slide-in menu */
-    header nav.nav-active ul {
-    display: flex;
-    flex-direction: column;
-    padding-top: 80px;
-    gap: 0;
-}
+    header nav ul li:last-child a {
+        border-bottom: none;
+    }
 
-    header nav.nav-active ul li a {
-        display: block;
-        padding: 20px 30px;
-        text-align: left;
-        border-bottom: 1px solid var(--border-color);
+    /* This class is added by JavaScript to show the menu */
+    nav.nav-active {
+        max-height: 500px;
+    }
+
+    /* --- General Layout & Font Sizes --- */
+    section {
+        padding: 40px 15px;
+    }
+
+    h2, #location .container > h2, #family-tree .container > h2 {
+        font-size: 2.5em !important;
+    }
+
+    /* --- Home Page --- */
+    #home .names h1 {
+        font-size: 3em; /* Reduce font size of names */
+    }
+
+    .countdown-container {
+        flex-wrap: wrap; /* Allow timer blocks to wrap */
+        gap: 15px;
+        max-width: 320px; /* Constrain the width to center it */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .time-block {
+        flex-basis: calc(50% - 10px); /* Make timer blocks 2x2 */
+        min-width: 120px;
+    }
+    
+    .wedding-dates, .tree-container {
+        flex-direction: column; /* Stack dates and family trees vertically */
+        gap: 30px;
+    }
+    .date-separator { display: none; }
+
+    /* --- Location Page --- */
+    .additional-info-container {
+        margin-top: 40px;
+    }
+
+    /* --- Family Tree --- */
+    .family-side {
+        min-width: 100%;
+    }
+    .generation {
+        flex-direction: column;
+    }
+    .member:not(:last-child)::after {
+        display: none; /* Remove horizontal lines */
     }
 }
