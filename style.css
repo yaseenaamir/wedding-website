@@ -143,7 +143,13 @@ header nav ul li a:hover {
 .gregorian-date { font-size: 1.3em; font-weight: 500; color: var(--dark-text); margin-bottom: 8px; }
 .hijri-date { font-size: 1.1em; color: var(--light-text); }
 .date-separator { width: 1px; background-color: var(--border-color); }
-
+.event-time {
+    font-family: var(--font-sans);
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--dark-text);
+    margin-top: 15px;
+}
 /* -------------------------------------------------------------------------- */
 /* # INVITATION, LOCATION, RSVP, PHOTOS, FAMILY TREE PAGES
 /* # Use of a content wrapper for readability over the background
