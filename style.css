@@ -208,7 +208,7 @@ header nav ul li a:hover {
 #form-message { margin-top: 20px; }
 
 /* -------------------------------------------------------------------------- */
-/* # PHOTOS PAGE
+/* # PHOTOS PAGE (Corrected)
 /* -------------------------------------------------------------------------- */
 #photos .container {
     text-align: center;
@@ -218,14 +218,14 @@ header nav ul li a:hover {
     padding: 20px 0; /* Adds vertical breathing room */
 }
 
-.photos-container h2 {
+#photos .container > h2 {
     font-family: var(--font-serif);
     font-size: 3em;
     color: var(--dark-text);
     margin-bottom: 10px;
 }
 
-.photos-container > p {
+#photos .container > p {
     color: var(--light-text);
     margin-bottom: 40px;
     max-width: 600px;
