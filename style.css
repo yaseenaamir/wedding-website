@@ -514,106 +514,78 @@ header nav ul {
 }
 
 
-/* -------------------------------------------------------------------------- */
-/* # For Mobile Phones & Small Tablets
-/* -------------------------------------------------------------------------- */
+/* ==========================================================================
+   # RESPONSIVE STYLES (NEW - SCROLLABLE TAB BAR)
+   ========================================================================== */
+
 @media (max-width: 768px) {
 
-    /* --- Header & Navigation --- */
+    /* --- 1. Header & Logo --- */
+    
+    /* Stack the logo and nav vertically */
     header {
+        flex-direction: column;
+        align-items: flex-start; /* Aligns logo to the left */
         padding: 15px 20px;
     }
 
+    /* Hide the hamburger icon completely */
     #hamburger-icon {
-        display: block;
-        font-size: 2em;
-        cursor: pointer;
-        color: var(--brown);
-        position: relative;
-        z-index: 1001;
+        display: none;
     }
 
+    /* --- 2. Navigation Container --- */
+    
+    /* Make the <nav> container full-width */
     header nav {
-        position: absolute;
-        top: 71px; /* Height of the header */
-        left: 0;
+        /* Reset all old slide-in panel styles */
+        position: static;
+        transform: none;
         width: 100%;
-        background-color: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease-out;
+        height: auto;
+        background-color: transparent;
+        box-shadow: none;
+        transition: none;
+        margin-top: 10px; /* Add space below the logo */
     }
+
+    /* --- 3. The Scrollable Link List (UL) --- */
 
     header nav ul {
-        flex-direction: column;
-        padding: 20px;
-        gap: 0;
+        display: flex;
+        flex-direction: row;  /* Makes the list horizontal */
+        flex-wrap: nowrap;     /* Prevents links from wrapping to a new line */
+        overflow-x: auto;      /* This is the magic! Enables horizontal scrolling */
+        overflow-y: hidden;    /* Hides any vertical scrollbar */
+        
+        /* Reset old vertical menu styles */
+        padding-top: 0;
+        
+        /* Add some space between the links */
+        gap: 25px; 
+
+        /* Cleanly hide the scrollbar itself in most browsers */
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;     /* Firefox */
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    header nav ul::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* --- 4. The Links (LI / A) --- */
+
+    header nav ul li {
+        flex-shrink: 0; /* CRITICAL: Prevents links from shrinking */
     }
 
     header nav ul li a {
+        /* Reset old vertical menu link styles */
         display: block;
-        padding: 15px;
-        text-align: center;
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    header nav ul li:last-child a {
+        padding: 10px 0; /* Give links some vertical space */
         border-bottom: none;
-    }
-
-    /* This class is added by JavaScript to show the menu */
-    nav.nav-active {
-        max-height: 500px;
-    }
-
-    /* --- General Layout & Font Sizes --- */
-    section {
-        padding: 40px 15px;
-    }
-
-    h2, #location .container > h2, #family-tree .container > h2 {
-        font-size: 2.5em !important;
-    }
-
-    /* --- Home Page --- */
-    #home .names h1 {
-        font-size: 3em; /* Reduce font size of names */
-    }
-
-    .countdown-container {
-        flex-wrap: wrap; /* Allow timer blocks to wrap */
-        gap: 15px;
-        max-width: 320px; /* Constrain the width to center it */
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .time-block {
-        flex-basis: calc(50% - 10px); /* Make timer blocks 2x2 */
-        min-width: 120px;
-    }
-
-    .wedding-dates, .tree-container {
-        flex-direction: column; /* Stack dates and family trees vertically */
-        gap: 30px;
-    }
-    .date-separator { display: none; }
-
-    /* --- Location Page --- */
-    .additional-info-container {
-        margin-top: 40px;
-    }
-
-    /* --- Family Tree --- */
-    .family-side {
-        min-width: 100%;
-    }
-    .generation {
-        flex-direction: column;
-    }
-    .member:not(:last-child)::after {
-        display: none; /* Remove horizontal lines */
+        text-align: left;
     }
 }
 

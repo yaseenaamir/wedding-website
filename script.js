@@ -1,12 +1,12 @@
-// --- SCRIPT FOR MOBILE HAMBURGER MENU (FINAL) ---
-const hamburgerIcon = document.getElementById('hamburger-icon');
-const navElement = document.querySelector('header nav');
+// // --- SCRIPT FOR MOBILE HAMBURGER MENU (FINAL) ---
+// const hamburgerIcon = document.getElementById('hamburger-icon');
+// const navElement = document.querySelector('header nav');
 
-if (hamburgerIcon && navElement) {
-    hamburgerIcon.addEventListener('click', function() {
-        navElement.classList.toggle('nav-active');
-    });
-}
+// if (hamburgerIcon && navElement) {
+//     hamburgerIcon.addEventListener('click', function() {
+//         navElement.classList.toggle('nav-active');
+//     });
+// }
 
 // A SINGLE, ROBUST DOMCONTENTLOADED WRAPPER FOR THE REST OF THE SITE'S SCRIPTS
 document.addEventListener('DOMContentLoaded', function() {
