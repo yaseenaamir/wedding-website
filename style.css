@@ -305,7 +305,7 @@ header nav ul li a.nav-active {
     
     header {
         flex-direction: column;
-        align-items: flex-start; /* Aligns logo to the left */
+        align-items: center; /* Aligns logo to the left */
         padding: 15px 20px;
     }
 
@@ -449,4 +449,94 @@ header nav ul li a.nav-active {
 
 #music-toggle:hover {
     transform: scale(1.1);
+}
+
+
+/* ==========================================================================
+   # FLORAL BUTTON HOVER EFFECT (CORRECTED)
+   ========================================================================== */
+
+/* This targets all your main buttons */
+.save-calendar-button, 
+.download-button, 
+.direction-button, 
+#upload-button, 
+button[type="submit"] {
+    position: relative; /* Required for the leaves */
+    overflow: hidden;   /* Hides the leaves when they are "outside" */
+    /* Add a transition to the button itself for a smoother color change */
+    transition: all 0.4s ease-out; 
+}
+
+/* This creates the two "leaves" */
+.save-calendar-button::before, 
+.download-button::before, 
+.direction-button::before, 
+#upload-button::before, 
+button[type="submit"]::before,
+.save-calendar-button::after, 
+.download-button::after, 
+.direction-button::after, 
+#upload-button::after, 
+button[type="submit"]::after {
+    content: '';
+    position: absolute;
+    width: 10px; /* Width of the leaf */
+    height: 5px; /* Height of the leaf */
+    background-color: var(--brown); /* Color of the leaf */
+    border-radius: 50%;
+    opacity: 0; /* Start hidden */
+    transition: all 0.4s ease-out;
+}
+
+/* Position the first leaf (top-left) */
+.save-calendar-button::before, 
+.download-button::before, 
+.direction-button::before, 
+#upload-button::before, 
+button[type="submit"]::before {
+    top: 50%;
+    left: 0;
+    transform: translate(-100%, -50%) rotate(-45deg);
+}
+
+/* Position the second leaf (bottom-right) */
+.save-calendar-button::after, 
+.download-button::after, 
+.direction-button::after, 
+#upload-button::after, 
+button[type="submit"]::after {
+    bottom: 50%;
+    right: 0;
+    transform: translate(100%, 50%) rotate(-45deg);
+}
+
+/* --- THE HOVER ANIMATION (THIS IS THE CORRECTED PART) --- */
+
+/* When hovering the button, change the button's text color */
+.save-calendar-button:hover, 
+.download-button:hover, 
+.direction-button:hover, 
+#upload-button:hover, 
+button[type="submit"]:hover {
+    color: #fff; /* Make text white on hover */
+}
+
+/* On hover, move the leaves into view and make them visible */
+.save-calendar-button:hover::before, 
+.download-button:hover::before, 
+.direction-button:hover::before, 
+#upload-button:hover::before, 
+button[type="submit"]:hover::before {
+    transform: translate(15px, -50%) rotate(-45deg);
+    opacity: 1;
+}
+
+.save-calendar-button:hover::after, 
+.download-button:hover::after, 
+.direction-button:hover::after, 
+#upload-button:hover::after, 
+button[type="submit"]:hover::after {
+    transform: translate(-15px, 50%) rotate(-45deg);
+    opacity: 1;
 }
