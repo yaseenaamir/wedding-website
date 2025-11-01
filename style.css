@@ -1,5 +1,5 @@
 /* ==========================================================================
-   A&A WEDDING WEBSITE - MASTER STYLESHEET (FINAL FLORAL THEME V2)
+   A&A WEDDING WEBSITE - MASTER STYLESHEET (SEPARATE PAGES)
    ========================================================================== */
 
 /* -------------------------------------------------------------------------- */
@@ -33,13 +33,12 @@ html {
 
 body {
     font-family: var(--font-sans);
-    background-color: var(--bg-light); /* Fallback color */
+    background-color: var(--bg-light);
     color: var(--dark-text);
     overflow-x: hidden;
-    position: relative; /* Needed for the pseudo-element */
+    position: relative;
 }
 
-/* This creates the flower background for the entire site */
 body::before {
     content: '';
     position: absolute;
@@ -51,14 +50,14 @@ body::before {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: top center;
-    background-attachment: fixed; /* Fixes the background in place */
+    background-attachment: fixed;
     opacity: 0.15;
     z-index: -1;
 }
 
 section {
     padding: 80px 20px;
-    min-height: 90vh; /* Restore min-height for proper spacing */
+    min-height: 90vh;
     background-color: transparent;
 }
 .container {
@@ -69,7 +68,7 @@ section {
     max-width: 1200px;
     margin: 0 auto;
     box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-    text-align: center; /* Center align text inside the container */
+    text-align: center;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -151,9 +150,8 @@ header nav ul li a:hover {
     margin-top: 15px;
 }
 /* -------------------------------------------------------------------------- */
-/* # INVITATION, LOCATION, RSVP, PHOTOS, FAMILY TREE PAGES
+/* # INVITATION PAGE
 /* -------------------------------------------------------------------------- */
-
 .invitation-content .bismillah { font-family: 'Arial', sans-serif; font-size: 2em; color: var(--gold); margin-bottom: 30px; }
 .invitation-content h2 { font-family: var(--font-serif); font-size: 3.5em; font-weight: 700; color: var(--dark-text); margin-bottom: 30px; }
 .invitation-content .hosts { font-size: 1.2em; line-height: 1.8; margin-bottom: 30px; }
@@ -163,7 +161,6 @@ header nav ul li a:hover {
 /* -------------------------------------------------------------------------- */
 /* # LOCATION PAGE
 /* -------------------------------------------------------------------------- */
-
 #location .container > h2 { 
     font-family: var(--font-serif); 
     text-align: center; 
@@ -180,7 +177,6 @@ header nav ul li a:hover {
 .location-details h4 { font-size: 1.3em; font-weight: 600; margin-top: 10px; }
 .location-details p { font-size: 1em; line-height: 1.6; margin-top: 10px; color: var(--light-text); }
 .additional-info-container { margin: 60px auto 0; text-align: left; }
-.info-section { margin-bottom: 50px; }
 .info-section > h2 { font-family: var(--font-serif); text-align: center; border-bottom: 2px solid var(--border-color); padding-bottom: 15px; font-size: 2.5em; }
 .info-note { text-align: center; font-style: italic; color: #777; margin: -10px 0 20px; }
 .weather-container, .transport-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px; }
@@ -211,7 +207,7 @@ header nav ul li a:hover {
 .radio-group input[type="radio"]:checked + label { background-color: var(--brown); border-color: var(--brown); color: #fff; }
 #form-message { margin-top: 20px; }
 
-/* HIDE RSVP 'ATTENDING' BLOCK - This is a rule you had, I'm keeping it */
+/* HIDE RSVP 'ATTENDING' BLOCK */
 .form-group.event-selection {
     display: none;
 }
@@ -301,7 +297,7 @@ header nav ul li a.nav-active {
 
 
 /* ==========================================================================
-   # RESPONSIVE STYLES (MOBILE - THE FINAL, COMBINED BLOCK)
+   # RESPONSIVE STYLES (MOBILE - SCROLLING TAB BAR)
    ========================================================================== */
 @media (max-width: 768px) {
 
@@ -368,13 +364,13 @@ header nav ul li a.nav-active {
     .container {
         padding: 40px 20px;
     }
-
-    /* --- 3. Home Page Fixes (Content Stacking) --- */
     
+    /* --- 3. FIXES FOR INDIVIDUAL PAGES --- */
+    
+    /* Home Page Mobile */
     #home .names h1 {
         font-size: 3em; 
     }
-
     .countdown-container {
         flex-wrap: wrap; 
         gap: 15px;
@@ -382,12 +378,10 @@ header nav ul li a.nav-active {
         margin-left: auto;
         margin-right: auto;
     }
-
     .time-block {
         flex-basis: calc(50% - 10px); /* 2x2 grid */
         min-width: 120px;
     }
-
     .wedding-dates {
         flex-direction: column;
         gap: 30px;
@@ -396,26 +390,17 @@ header nav ul li a.nav-active {
         display: none; 
     }
 
-    /* --- 4. Family Tree Fixes (Content Stacking) --- */
-    
-    .tree-container {
-        flex-direction: column;
-        gap: 30px;
-    }
-    
+    /* Family Tree Mobile */
     .family-side {
         min-width: 100%;
     }
-    
     .generation {
         flex-direction: column;
         gap: 20px;
     }
-    
     .member:not(:last-child)::after {
         display: none;
     }
-    
     .generation:not(:last-child)::after {
         bottom: -25px; 
         height: 25px;

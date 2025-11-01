@@ -1,13 +1,3 @@
-// // --- SCRIPT FOR MOBILE HAMBURGER MENU (FINAL) ---
-// const hamburgerIcon = document.getElementById('hamburger-icon');
-// const navElement = document.querySelector('header nav');
-
-// if (hamburgerIcon && navElement) {
-//     hamburgerIcon.addEventListener('click', function() {
-//         navElement.classList.toggle('nav-active');
-//     });
-// }
-
 // A SINGLE, ROBUST DOMCONTENTLOADED WRAPPER FOR THE REST OF THE SITE'S SCRIPTS
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -70,6 +60,43 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+    
+    // --- SCRIPT FOR ACTIVE NAV LINK (SEPARATE PAGES) ---
+    // This new script checks the URL on page load
+    const currentPath = window.location.pathname.split("/").pop();
+    const navLinks = document.querySelectorAll('#nav-links a');
+
+    if (navLinks.length > 0) {
+        let activeLinkFound = false;
+
+        navLinks.forEach(link => {
+            const linkPath = link.href.split("/").pop();
+            
+            // Check if the link's path matches the current page's path
+            if (linkPath === currentPath) {
+                link.classList.add('nav-active');
+                activeLinkFound = true;
+                
+                // On mobile, scroll the nav bar to show the active link
+                if (window.innerWidth <= 768) {
+                    link.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest',
+                        inline: 'center'
+                    });
+                }
+            }
+        });
+
+        // Fallback: If no link was matched (e.g., at root "/"), light up the "Home" link
+        if (!activeLinkFound && (currentPath === '' || currentPath === 'index.html')) {
+            const homeLink = document.querySelector('#nav-links a[href="index.html"]');
+            if (homeLink) {
+                homeLink.classList.add('nav-active');
+            }
+        }
+    }
+
 
     // --- SCRIPT FOR COUNTDOWN TIMER ---
     const countdownElement = document.getElementById('countdown');
@@ -125,90 +152,85 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- SCRIPT FOR PHOTO UPLOAD & GALLERY (WITH MULTIPLE UPLOAD) ---
-
-// --- PART 1: Code to build the gallery (fetches from Apps Script) ---
-const photoGallery = document.getElementById('photo-gallery');
-if (photoGallery) {
-    const galleryScriptURL = 'https://script.google.com/macros/s/AKfycbzKhQoUMq-MxFv8Wyu9SVnFsnrcjNdukiINX5xkBlNCNXOgl7pdddCUrVubCxLX1gupHQ/exec'; 
-    fetch(galleryScriptURL)
-        .then(response => response.json())
-        .then(urls => {
-            console.log("Fetched URLs from Google Script:", urls);
-            if (urls && urls.length > 0) {
-                photoGallery.innerHTML = '';
-                urls.forEach(url => {
-                    const img = document.createElement('img');
-                    img.src = url;
-                    img.onerror = function() { this.style.display = 'none'; };
-                    photoGallery.appendChild(img);
-                });
-            } else {
-                photoGallery.innerHTML = '<p style="color:#aaa;">No photos have been approved for display yet. Be the first to share!</p>';
-            }
-        })
-        .catch(error => {
-            console.error('Error fetching gallery photos:', error);
-            photoGallery.innerHTML = '<p style="color:#ff4d4d;">Could not load the photo gallery. Please try again later.</p>';
-        });
-}
-
-// --- PART 2: Code to handle the file upload (now handles multiple files) ---
-const photoInput = document.getElementById('photo-input');
-const uploadButton = document.getElementById('upload-button');
-const uploadStatus = document.getElementById('upload-status');
-
-if (uploadButton) {
-    const uploadScriptURL = 'https://script.google.com/macros/s/AKfycbzKhQoUMq-MxFv8Wyu9SVnFsnrcjNdukiINX5xkBlNCNXOgl7pdddCUrVubCxLX1gupHQ/exec';
-    uploadButton.addEventListener('click', () => {
-        photoInput.click();
-    });
-
-    photoInput.addEventListener('change', (event) => {
-        const files = event.target.files;
-        if (!files.length) return;
-
-        uploadButton.disabled = true;
-        uploadStatus.textContent = `Uploading ${files.length} photo(s)...`;
-
-        // Create a promise for each file upload
-        const uploadPromises = Array.from(files).map(file => {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => {
-                    const fileData = { name: file.name, type: file.type, file: reader.result };
-                    fetch(uploadScriptURL, { method: 'POST', body: JSON.stringify(fileData) })
-                        .then(res => res.json())
-                        .then(data => {
-                            if (data.result === 'success') {
-                                resolve(data);
-                            } else {
-                                reject(data.error);
-                            }
-                        })
-                        .catch(reject);
-                };
-                reader.onerror = reject;
-            });
-        });
-
-        // Wait for all promises to settle
-        Promise.all(uploadPromises)
-            .then(results => {
-                uploadStatus.textContent = `Successfully uploaded ${results.length} photo(s) for review!`;
-                uploadStatus.style.color = 'var(--gold)';
+    const photoGallery = document.getElementById('photo-gallery');
+    if (photoGallery) {
+        const galleryScriptURL = 'https://script.google.com/macros/s/AKfycbzKhQoUMq-MxFv8Wyu9SVnFsnrcjNdukiINX5xkBlNCNXOgl7pdddCUrVubCxLX1gupHQ/exec'; 
+        fetch(galleryScriptURL)
+            .then(response => response.json())
+            .then(urls => {
+                console.log("Fetched URLs from Google Script:", urls);
+                if (urls && urls.length > 0) {
+                    photoGallery.innerHTML = '';
+                    urls.forEach(url => {
+                        const img = document.createElement('img');
+                        img.src = url;
+                        img.onerror = function() { this.style.display = 'none'; };
+                        photoGallery.appendChild(img);
+                    });
+                } else {
+                    photoGallery.innerHTML = '<p style="color:#aaa;">No photos have been approved for display yet. Be the first to share!</p>';
+                }
             })
             .catch(error => {
-                uploadStatus.textContent = 'Some files failed to upload. Please try again.';
-                uploadStatus.style.color = 'red';
-                console.error('Upload Error:', error);
-            })
-            .finally(() => {
-                uploadButton.disabled = false;
-                photoInput.value = ''; // Reset the input
+                console.error('Error fetching gallery photos:', error);
+                photoGallery.innerHTML = '<p style="color:#ff4d4d;">Could not load the photo gallery. Please try again later.</p>';
             });
-    });
-}
+    }
+
+    const photoInput = document.getElementById('photo-input');
+    const uploadButton = document.getElementById('upload-button');
+    const uploadStatus = document.getElementById('upload-status');
+
+    if (uploadButton) {
+        const uploadScriptURL = 'https://script.google.com/macros/s/AKfycbzKhQoUMq-MxFv8Wyu9SVnFsnrcjNdukiINX5xkBlNCNXOgl7pdddCUrVubCxLX1gupHQ/exec';
+        uploadButton.addEventListener('click', () => {
+            photoInput.click();
+        });
+
+        photoInput.addEventListener('change', (event) => {
+            const files = event.target.files;
+            if (!files.length) return;
+
+            uploadButton.disabled = true;
+            uploadStatus.textContent = `Uploading ${files.length} photo(s)...`;
+
+            const uploadPromises = Array.from(files).map(file => {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => {
+                        const fileData = { name: file.name, type: file.type, file: reader.result };
+                        fetch(uploadScriptURL, { method: 'POST', body: JSON.stringify(fileData) })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.result === 'success') {
+                                    resolve(data);
+                                } else {
+                                    reject(data.error);
+                                }
+                            })
+                            .catch(reject);
+                    };
+                    reader.onerror = reject;
+                });
+            });
+
+            Promise.all(uploadPromises)
+                .then(results => {
+                    uploadStatus.textContent = `Successfully uploaded ${results.length} photo(s) for review!`;
+                    uploadStatus.style.color = 'var(--gold)';
+                })
+                .catch(error => {
+                    uploadStatus.textContent = 'Some files failed to upload. Please try again.';
+                    uploadStatus.style.color = 'red';
+                    console.error('Upload Error:', error);
+                })
+                .finally(() => {
+                    uploadButton.disabled = false;
+                    photoInput.value = ''; // Reset the input
+                });
+        });
+    }
 
     // --- SCRIPT FOR SAVE THE DATE CALENDAR LINKS ---
     const eventDetails = {
