@@ -66,21 +66,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const musicToggle = document.getElementById('music-toggle');
 
     if (music && musicToggle) {
+        // We start with the icon as 'play' (🔊)
+        // We'll use a 'data-playing' attribute to track state
         musicToggle.addEventListener('click', function() {
             if (music.paused) {
-                // If paused, play and show the 'mute' icon
-                music.play();
-                music.muted = false;
-                musicToggle.innerHTML = '🔇';
+                // If paused, play it and show the 'mute' icon
+                music.play().then(() => {
+                    // Audio is playing
+                    music.muted = false;
+                    musicToggle.innerHTML = '🔇';
+                }).catch(error => {
+                    // Autoplay was prevented (shouldn't happen on click, but good to have)
+                    console.log("Music play failed:", error);
+                });
             } else {
-                // If playing, toggle mute
+                // If playing, just toggle mute
                 music.muted = !music.muted;
                 // Update icon based on mute state
                 musicToggle.innerHTML = music.muted ? '🔈' : '🔇';
             }
         });
     }
-    
     // --- SCRIPT FOR ACTIVE NAV LINK (SEPARATE PAGES) ---
     // This new script checks the URL on page load
     const currentPath = window.location.pathname.split("/").pop();
@@ -182,11 +188,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (urls && urls.length > 0) {
                     photoGallery.innerHTML = '';
                     urls.forEach(url => {
-                        const img = document.createElement('img');
-                        img.src = url;
-                        img.onerror = function() { this.style.display = 'none'; };
-                        photoGallery.appendChild(img);
-                    });
+                    // 1. Create the <a> link for the lightbox
+                    const link = document.createElement('a');
+                    link.href = url; // The link's 'href' is the full-size image
+                    link.setAttribute('data-lightbox', 'wedding-gallery'); // Group photos
+                    // 2. Create the <img> thumbnail inside the link
+                const img = document.createElement('img');
+                img.src = url; // The image 'src' is the thumbnail
+                img.onerror = function() { this.style.display = 'none'; };
+                // 3. Append the <img> to the <a>, and the <a> to the gallery
+                link.appendChild(img);
+                photoGallery.appendChild(link);
+            });
+                    // urls.forEach(url => {
+                    //     const img = document.createElement('img');
+                    //     img.src = url;
+                    //     img.onerror = function() { this.style.display = 'none'; };
+                    //     photoGallery.appendChild(img);
+                    // });
                 } else {
                     photoGallery.innerHTML = '<p style="color:#aaa;">No photos have been approved for display yet. Be the first to share!</p>';
                 }
