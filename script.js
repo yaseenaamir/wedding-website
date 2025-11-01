@@ -60,6 +60,26 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+
+    // --- SCRIPT FOR MUSIC TOGGLE BUTTON ---
+    const music = document.getElementById('background-music');
+    const musicToggle = document.getElementById('music-toggle');
+
+    if (music && musicToggle) {
+        musicToggle.addEventListener('click', function() {
+            if (music.paused) {
+                // If paused, play and show the 'mute' icon
+                music.play();
+                music.muted = false;
+                musicToggle.innerHTML = '🔇';
+            } else {
+                // If playing, toggle mute
+                music.muted = !music.muted;
+                // Update icon based on mute state
+                musicToggle.innerHTML = music.muted ? '🔈' : '🔇';
+            }
+        });
+    }
     
     // --- SCRIPT FOR ACTIVE NAV LINK (SEPARATE PAGES) ---
     // This new script checks the URL on page load
