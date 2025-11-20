@@ -207,10 +207,10 @@ header nav ul li a:hover {
 .radio-group input[type="radio"]:checked + label { background-color: var(--brown); border-color: var(--brown); color: #fff; }
 #form-message { margin-top: 20px; }
 
-/* HIDE RSVP 'ATTENDING' BLOCK */
+/* HIDE RSVP 'ATTENDING' BLOCK
 .form-group.event-selection {
     display: none;
-}
+} */
 
 /* -------------------------------------------------------------------------- */
 /* # PHOTOS PAGE
