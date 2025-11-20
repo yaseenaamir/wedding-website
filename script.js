@@ -323,3 +323,81 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+// --- SCRIPT FOR LIVE GUESTBOOK (GOOGLE SHEETS) ---
+    const guestbookForm = document.getElementById('guestbook-form');
+    
+    // Only run this code if the guestbook form exists on the current page
+    if (guestbookForm) {
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzVHb8W9bVJl5X7BZay8jraP5pFue3zBQFQN9nJM45_hxiu6Usfg20-APdUIWCKVSQw1Q/exec'; // <--- PASTE YOUR URL HERE
+        const status = document.getElementById('guestbook-status');
+        const container = document.getElementById('messages-container');
+        const btn = document.getElementById('guestbook-submit-btn');
+
+        // Helper function to build the HTML
+        function createMessageHTML(name, message) {
+            return `
+            <div class="guest-message fade-in">
+                <p>"${message}"</p>
+                <h4>— ${name}</h4>
+            </div>`;
+        }
+
+        function addMessageToPage(name, message) {
+            const html = createMessageHTML(name, message);
+            container.insertAdjacentHTML('beforeend', html);
+        }
+
+        // 1. Load Messages on Page Load
+        fetch(scriptURL)
+            .then(response => response.json())
+            .then(data => {
+                container.innerHTML = ''; // Clear loading text
+                if (data.length === 0) {
+                    container.innerHTML = '<p class="no-msg">Be the first to leave a wish!</p>';
+                } else {
+                    data.forEach(entry => {
+                        addMessageToPage(entry.name, entry.message);
+                    });
+                }
+            })
+            .catch(error => {
+                console.error('Error loading messages!', error);
+                container.innerHTML = '<p class="no-msg">Could not load messages.</p>';
+            });
+
+        // 2. Handle Form Submit
+        guestbookForm.addEventListener('submit', e => {
+            e.preventDefault();
+            
+            // Disable button
+            btn.disabled = true;
+            btn.innerText = "Posting...";
+
+            // A. Optimistic UI: Add message to page IMMEDIATELY
+            const nameVal = document.getElementById('GuestName').value;
+            const msgVal = document.getElementById('Message').value;
+            
+            // Add the new message to the top of the list
+            const newMessageHTML = createMessageHTML(nameVal, msgVal);
+            container.insertAdjacentHTML('afterbegin', newMessageHTML);
+
+            // B. Send to Google Sheet in background
+            fetch(scriptURL, { method: 'POST', body: new FormData(guestbookForm)})
+                .then(response => {
+                    status.textContent = "Thank you! Your message has been posted.";
+                    status.style.color = "var(--gold)";
+                    guestbookForm.reset();
+                    btn.disabled = false;
+                    btn.innerText = "Share Message";
+                    
+                    // Clear status after 3 seconds
+                    setTimeout(() => { status.textContent = ""; }, 3000);
+                })
+                .catch(error => {
+                    status.textContent = "Error! Please try again.";
+                    status.style.color = "red";
+                    btn.disabled = false;
+                    btn.innerText = "Share Message";
+                });
+        });
+    }

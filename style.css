@@ -540,3 +540,66 @@ button[type="submit"]:hover::after {
     transform: translate(-15px, 50%) rotate(-45deg);
     opacity: 1;
 }
+
+/* --- Guestbook Styles --- */
+.guestbook-section {
+    margin-top: 60px;
+}
+.guestbook-messages {
+    margin-top: 40px;
+    text-align: left;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.guestbook-section h2 {
+        font-size: 1.8em !important; /* Slightly smaller to fit on one line */
+        white-space: nowrap;          /* Forces text to stay on one line */
+    }
+.guestbook-messages h3 {
+    font-family: var(--font-serif);
+    font-size: 1.8em;
+    color: var(--dark-text);
+    text-align: center;
+    margin-bottom: 20px;
+}
+.guest-message {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.guest-message p {
+    font-family: var(--font-serif);
+    font-size: 1.2em;
+    font-style: italic;
+    color: var(--light-text);
+    line-height: 1.6;
+}
+.guest-message h4 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    color: var(--gold);
+    margin-top: 10px;
+    text-align: right;
+}
+#guestbook-form-status {
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+/* --- Style for the Message Box (Textarea) --- */
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffffff; /* Keeps the background white like your screenshot */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: var(--dark-text);
+    font-family: var(--font-sans); /* Ensures it uses your website's font */
+    font-size: 1em;
+    min-height: 120px; /* <--- This ensures it stays TALL by default */
+    resize: vertical;  /* Allows the user to drag it bigger, but not smaller than min-height */
+}
