@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guestbook | Anam & Yaseen's Wedding</title> 
+    <title>RSVP | Anam & Yaseen's Wedding</title> 
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +18,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="invitation.html">Invitation</a></li>
                 <li><a href="location.html">Location</a></li>
-                <!-- UPDATED LINK: Changed RSVP to Guestbook -->
-                <li><a href="rsvp.html">Guestbook</a></li>
+                <li><a href="rsvp.html">RSVP</a></li>
                 <li><a href="photos.html">Photos</a></li>
                 <li><a href="family-tree.html">Family Tree</a></li>
             </ul>
@@ -29,70 +28,44 @@
         </div>
     </header>
 
-    <section id="guestbook">
+    <section id="rsvp">
         <div class="container">
-            <div class="guestbook-section">
-                <!-- Optional: Add a nice header image or icon here if you like -->
-                
-                <h2>Leave Your <br> Well-Wishes</h2>
-                <p class="rsvp-subtext">Share a message, memory, or wish for the couple. It will appear below instantly!</p>
-
-                <!-- GUESTBOOK FORM -->
-                <form id="guestbook-form">
+            <div class="rsvp-container">
+                <h2>Kindly Respond</h2>
+                <p class="rsvp-subtext">We look forward to celebrating with you.</p>
+                <form id="rsvp-form">
                     <div class="form-group">
-                        <label for="GuestName">Your Name(s)</label>
-                        <input type="text" id="GuestName" name="Name" required placeholder="e.g. The Mirza Family">
+                        <label for="Name">Full Name*</label>
+                        <input type="text" id="Name" name="Name" required>
                     </div>
                     <div class="form-group">
-                        <label for="Message">Your Message</label>
-                        <textarea id="Message" name="Message" rows="4" required placeholder="Write your wish here..."></textarea>
+                        <label for="Phone">Phone Number</label>
+                        <input type="tel" id="Phone" name="Phone">
                     </div>
-                    <button type="submit" id="guestbook-submit-btn">Share Message</button>
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="email" id="Email" name="Email">
+                    </div>
+                    <div class="form-group event-selection">
+                        <label>Attending*</label>
+                        <div class="radio-group">
+                            <input type="radio" id="nikah" name="Attending" value="Nikah" required>
+                            <label for="nikah">Nikah</label>
+                            <input type="radio" id="valima" name="Attending" value="Valima">
+                            <label for="valima">Valima</label>
+                            <input type="radio" id="both" name="Attending" value="Both">
+                            <label for="both">Both</label>
+                        </div>
+                    </div>
+                    <button type="submit" id="submit-button">Submit RSVP</button>
                 </form>
-                <div id="guestbook-status"></div>
-
-                <!-- MESSAGES DISPLAY AREA -->
-                <div class="guestbook-messages">
-                    <h3>Messages from Friends & Family</h3>
-                    <div id="messages-container">
-                        <p class="loading-text">Loading loving wishes...</p>
-                    </div>
-                </div>
+                
+                <div id="form-message"></div>
             </div>
         </div>
     </section>
-
-    <!-- BACKGROUND MUSIC & TOGGLE -->
-    <audio id="background-music" src="music/Wedding.mp3" loop preload="auto"></audio>
-    <button id="music-toggle">🔊</button> 
-
-    <!-- CONTACT BUBBLE -->
-    <div id="contact-bubble">
-        <div id="contact-icon">?</div>
-        <div id="contact-form-container">
-            <h4>Get in Touch</h4>
-            <form id="contact-form" action="https://formspree.io/f/xovngdyn" method="POST">
-                <div class="form-group">
-                    <label for="contact-name">Name</label>
-                    <input type="text" id="contact-name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="contact-number">Number</label>
-                    <input type="tel" id="contact-number" name="number">
-                </div>
-                <div class="form-group">
-                    <label for="contact-query">Query</label>
-                    <textarea id="contact-query" name="query" rows="3" required></textarea>
-                </div>
-                <button type="submit">Send</button>
-            </form>
-            <div id="contact-form-status"></div>
-            <a href="tel:+9894077696" class="call-us-button">
-                Call Us (+91 9894077696)
-            </a>
-        </div>
-    </div>
-  
+<audio id="background-music" src="music/Wedding.mp3" loop preload="auto"></audio>
+    <button id="music-toggle">🔊</button> <div id="contact-bubble">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
     <script src="script.js"></script>
